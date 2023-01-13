@@ -21,35 +21,56 @@ def cadastro():
     print('-'*30)
     print(f'{"CADASTRO":^30}')
     print('-'*30)
-
-    funcionario.append(str(input('Nome do funcionário: ')))
-    funcionario.append(int(input('Qual a idade: ')))
-    funcionario.append(str(input('Qual a função: ')))
-    funcionario.append(str(input('CPF: ')))
-    funcionario.append(str(input('Endereço: ')))
+    funcionario = dict()
+    funcionario['nome'] = (str(input('Nome do funcionário: ')))
+    funcionario['idade'] = (int(input('Qual a idade: ')))
+    funcionario['função'] = (str(input('Qual a função: ')))
+    funcionario['CPF'] = (str(input('CPF: ')))
+    funcionario['Endereço'] = (str(input('Endereço: ')))
       
-    funcionarios.append(funcionario[:])
+    funcionarios.append(funcionario.copy())
     funcionario.clear()
     print(f'{"Funcionario cadastrado com sucesso!":^60}')
     print('---'*20)
     
     continuar = str(input('Fazer novo cadastro? '))
     if continuar in 'Nn':
+      os.system('clear')
       break
 
 
 # Função que lista os funcionarios 
-def listarfuncinarios(): 
-  print('')
 
+
+
+
+def listarfuncinarios():
+  os.system('clear')
+  global funcionarios
+  print('-'* 71)
+  print('|ID                 NOME                          FUNÇÃO               |')
+  for index,lin in enumerate(funcionarios):
+    print(f'|{index:0>2}', end = '        ')
+    print(f"{lin['nome']:<30}", end = '')
+    print(f"{lin['função']:<30}|", end = '')
+    print('') 
+  print('-'* 71)
+  id = int(input('Digite o ID do funcionário para mais informaçoes[-1 para voltar ao menu principal]: '))
+  if id != -1:
+    for key,item in funcionarios[id].items():
+      print(f'{key}: {item}')
+    print('')
+    input('Precione qualquer tecla para voltar ao menu principal')
+  
 # Excluir funcionario da lista
 def excluifuncionario(): 
   print('')
 
 
 
-funcionarios = []
-funcionario = []
+funcionarios = [
+  {'nome': 'Felype Ramirez Alves', 'idade': 21, 'função': 'Desenvolvedor Python', 'CPF': '0987961454', 'endereço': 'Foz do Iguaçu'}
+]
 cont = 0 
 opção = 0
 continuar = ''
@@ -57,14 +78,17 @@ continuar = ''
 while True: 
   menu()
   opção = int(input('Sua opção: '))
+  os.system('clear')
   if opção == 1:
     cadastro()
   elif opção == 2:
     listarfuncinarios()
+
   elif opção == 3:
     excluifuncionario()
   elif opção == 4:
     break
 for index,item in enumerate(funcionarios):
   print(item)
+
 
