@@ -60,7 +60,8 @@ def listarfuncinarios():
     for key,item in funcionarios[id].items():
       print(f'{key}: {item}')
     print('')
-    input('Precione qualquer tecla para voltar ao menu principal')
+    input('Precione qualquer tecla para voltar ao menu principal: ')
+    os.system('clear')
   
 # Excluir funcionario da lista
 def excluifuncionario(): 
