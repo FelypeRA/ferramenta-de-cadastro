@@ -55,22 +55,16 @@ def listarfuncinarios():
     print(f"{lin['função']:<30}|", end = '')
     print('') 
   print('-'* 71)
-  id = int(input('Digite o ID do funcionário para mais informaçoes[-1 para voltar ao menu principal]: '))
-  if id != -1:
-    for key,item in funcionarios[id].items():
-      print(f'{key}: {item}')
-    print('')
-    input('Precione qualquer tecla para voltar ao menu principal: ')
-    os.system('clear')
+
   
 # Excluir funcionario da lista
 def excluifuncionario(): 
-  print('')
-
-
+  listarfuncinarios()
+  id = int(input('Digite o ID de quem deseja excluir: '))
+  del funcionarios[id]
 
 funcionarios = [
-  {'nome': 'Felype Ramirez Alves', 'idade': 21, 'função': 'Desenvolvedor Python', 'CPF': '0987961454', 'endereço': 'Foz do Iguaçu'}
+  {'nome': 'Felype Ramirez Alves', 'idade': 21, 'função': 'Desenvolvedor Python', 'CPF': '1234567', 'endereço': 'Foz do Iguaçu'}
 ]
 cont = 0 
 opção = 0
@@ -84,6 +78,13 @@ while True:
     cadastro()
   elif opção == 2:
     listarfuncinarios()
+    id = int(input('Digite o ID do funcionário para mais informaçoes[-1 para voltar ao menu principal]: '))
+    if id != -1:
+      for key,item in funcionarios[id].items():
+        print(f'{key}: {item}')
+      print('')
+    input('Precione qualquer tecla para voltar ao menu principal: ')
+    os.system('clear')
 
   elif opção == 3:
     excluifuncionario()
